@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@layer base, utilities;
+
+:root {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: var(--black-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --black-color: #242424;
+  --grey-border: #8d8d8d;
+  --green-color: #0fd226;
+}
+
+#root {
+  width: 100%;
+  height: 100dvh;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.answer-output,
+textarea {
+  scrollbar-width: thin;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+@layer base {
+  button {
+    background-color: grey;
+    padding: 4px 8px;
+    box-shadow: inset 2px 2px 0px 0px white;
+  }
+
+  button:not([disabled]):active {
+    padding-bottom: 2px;
+    box-shadow: inset 2px 2px 0px 0px grey;
+    background-color: rgb(105, 105, 105);
+  }
+
+  button[disabled] {
+    color: #989898;
+  }
+}
+
+/* .animate-blink {
+  animation: 1s blink steps(2, jump-none) infinite;
+} */
+
+.dots-loading {
+  display: inline-block;
+  clip-path: inset(0 3ch 0 0);
+  animation: dots 1s steps(4) infinite;
+}
+/* 
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+} */
+
+@keyframes dots {
+  to {
+    clip-path: inset(0 -1ch 0 0);
+  }
+}

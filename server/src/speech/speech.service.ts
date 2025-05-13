@@ -24,38 +24,40 @@ export class SpeechService {
 // }
 
 async function prodAPI(dto: SpeechDto) {
-  const baseURL = 'https://api.aimlapi.com/v1';
+  // const baseURL = 'https://api.aimlapi.com/v1';
 
-  const apiKey = 'acfa3be9c45546d48f2e80af5662d860';
+  // const apiKey = 'acfa3be9c45546d48f2e80af5662d860';
+  const apiKey = process.env.API_KEY;
+  console.log(apiKey);
 
-  const systemPrompt = 'You are a chat bot';
+  // const systemPrompt = 'You are a chat bot';
 
-  const api = new OpenAI({
-    apiKey,
-    baseURL,
-  });
+  // const api = new OpenAI({
+  //   apiKey,
+  //   baseURL,
+  // });
 
-  const completion = await api.chat.completions.create({
-    model: 'mistralai/Mistral-7B-Instruct-v0.2',
-    messages: [
-      {
-        role: 'system',
-        content: systemPrompt,
-      },
-      {
-        role: 'user',
-        content: dto.text,
-      },
-    ],
-    temperature: 0.7,
-    max_tokens: 256,
-  });
+  // const completion = await api.chat.completions.create({
+  //   model: 'mistralai/Mistral-7B-Instruct-v0.2',
+  //   messages: [
+  //     {
+  //       role: 'system',
+  //       content: systemPrompt,
+  //     },
+  //     {
+  //       role: 'user',
+  //       content: dto.text,
+  //     },
+  //   ],
+  //   temperature: 0.7,
+  //   max_tokens: 256,
+  // });
 
-  const response = completion.choices[0].message.content;
+  // const response = completion.choices[0].message.content;
 
-  console.log('AI:', response);
+  // console.log('AI:', response);
 
   return {
-    answer: response,
+    answer: apiKey,
   };
 }

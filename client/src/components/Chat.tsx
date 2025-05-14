@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent, type KeyboardEventHandler } from "react";
 import { sendQuestion } from "../api";
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
 import clsx from "clsx";
@@ -38,10 +38,12 @@ function Chat() {
     if (!input.length) return;
 
     const _input = input.trim();
+
     setInput("");
     setError({});
     addMessage(_input, true);
     setIsLoading(true);
+
     let result;
 
     try {
@@ -61,7 +63,7 @@ function Chat() {
     addMessage(result.answer, false);
   };
 
-  const onKeyDown = (e) => {
+  const onKeyDown = (e: KeyboardEvent): void => {
     if ((e.code === "Enter" || e.code === "NumpadEnter") && !e.shiftKey) {
       e.preventDefault();
       onSend();
@@ -82,7 +84,7 @@ function Chat() {
           <textarea
             className="ring-2 ring-[var(--grey-border)] w-full p-3 max-h-36 field-sizing-content resize-none z-10"
             placeholder="Type here"
-            value={transcript ? transcript : input}
+            value={input}
             ref={textareaRef}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onKeyDown}
